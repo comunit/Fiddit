@@ -69,7 +69,7 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({3:[function(require,module,exports) {
+})({6:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -80,7 +80,7 @@ exports.default = {
     return fetch(`http://www.reddit.com/search.json?q=${searchTerm}&sort=${sortBy}&limit=${searchLimit}`).then(res => res.json()).then(data => data.data.children.map(data => data.data)).catch(err => console.log(err));
   }
 };
-},{}],2:[function(require,module,exports) {
+},{}],4:[function(require,module,exports) {
 'use strict';
 
 var _redditapi = require('./redditapi');
@@ -166,7 +166,7 @@ function truncateText(text, limit) {
   if (shortened == -1) return text;
   return text.substring(0, shortened);
 }
-},{"./redditapi":3}],4:[function(require,module,exports) {
+},{"./redditapi":6}],8:[function(require,module,exports) {
 
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
@@ -186,37 +186,37 @@ module.bundle.Module = Module;
 
 if (!module.bundle.parent && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
-  var ws = new WebSocket('ws://' + hostname + ':' + '59695' + '/');
-  ws.onmessage = function (event) {
-    var data = JSON.parse(event.data);
+  // var ws = new WebSocket('ws://' + hostname + ':' + '60973' + '/');
+  // ws.onmessage = function (event) {
+  //   var data = JSON.parse(event.data);
 
-    if (data.type === 'update') {
-      data.assets.forEach(function (asset) {
-        hmrApply(global.require, asset);
-      });
+  //   if (data.type === 'update') {
+  //     data.assets.forEach(function (asset) {
+  //       hmrApply(global.require, asset);
+  //     });
 
-      data.assets.forEach(function (asset) {
-        if (!asset.isNew) {
-          hmrAccept(global.require, asset.id);
-        }
-      });
-    }
+  //     data.assets.forEach(function (asset) {
+  //       if (!asset.isNew) {
+  //         hmrAccept(global.require, asset.id);
+  //       }
+  //     });
+  //   }
 
-    if (data.type === 'reload') {
-      ws.close();
-      ws.onclose = function () {
-        location.reload();
-      };
-    }
+  //   // if (data.type === 'reload') {
+  //   //   ws.close();
+  //   //   ws.onclose = function () {
+  //   //     location.reload();
+  //   //   };
+  //   // }
 
-    if (data.type === 'error-resolved') {
-      console.log('[parcel] ✨ Error resolved');
-    }
+  //   if (data.type === 'error-resolved') {
+  //     console.log('[parcel] ✨ Error resolved');
+  //   }
 
-    if (data.type === 'error') {
-      console.error('[parcel] 🚨  ' + data.error.message + '\n' + 'data.error.stack');
-    }
-  };
+  //   if (data.type === 'error') {
+  //     console.error('[parcel] 🚨  ' + data.error.message + '\n' + 'data.error.stack');
+  //   }
+  // };
 }
 
 function getParents(bundle, id) {
@@ -287,5 +287,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id);
   });
 }
-},{}]},{},[4,2])
+},{}]},{},[8,4])
 //# sourceMappingURL=/dist/fiddit.map
